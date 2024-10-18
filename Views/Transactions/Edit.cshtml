@@ -1,0 +1,74 @@
+﻿@model FinanceTrackerApplication.Models.Transaction
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Transaction</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsInternalTransfer" /> @Html.DisplayNameFor(model => model.IsInternalTransfer)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountOutOfId" class="control-label"></label>
+                <input asp-for="AccountOutOfId" class="form-control" />
+                <span asp-validation-for="AccountOutOfId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExternalAccountName" class="control-label"></label>
+                <input asp-for="ExternalAccountName" class="form-control" />
+                <span asp-validation-for="ExternalAccountName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountIntoId" class="control-label"></label>
+                <input asp-for="AccountIntoId" class="form-control" />
+                <span asp-validation-for="AccountIntoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedAt" class="control-label"></label>
+                <input asp-for="CreatedAt" class="form-control" />
+                <span asp-validation-for="CreatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Repeating" /> @Html.DisplayNameFor(model => model.Repeating)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Frequency" class="control-label"></label>
+                <select asp-for="Frequency" class="form-control"></select>
+                <span asp-validation-for="Frequency" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

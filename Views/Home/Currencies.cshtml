@@ -1,0 +1,29 @@
+﻿@using FinanceTrackerApplication.Areas.Identity.Data
+@model CurrencyCode 
+@{
+    char previousLetter = 'A';
+    char currentLetter = 'A';
+}
+<h1>Currencies</h1>
+<p>Here you can view the currencies that are supported in the application.</p>
+<section id="CurrenciesStack" class="d-flex col-md-12 justify-content-between">
+    <div class="row">
+        <div class="row fs-3">A</div>
+        @foreach (var currency in Enum.GetValues(typeof(CurrencyCode)))
+        {
+            currentLetter = currency.ToString()[0];
+
+            if (currentLetter != 'A' && currentLetter != previousLetter)
+            {
+                <div class="row fs-3 mt-2 mb-1"> @currentLetter </div>
+                previousLetter = currentLetter;
+            }
+
+            <div class="card col-md-2 mx-1 mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">@currency</h5>
+                </div>
+            </div>
+        }
+    </div>
+</section>

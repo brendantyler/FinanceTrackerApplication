@@ -1,0 +1,159 @@
+﻿@using FinanceTrackerApplication.Models
+@using FinanceTrackerApplication.Models.ViewModels
+@model FinanceTrackerApplication.Models.ViewModels.TransactionVM
+@{
+    ViewData["Title"] = "Create Transaction";
+}
+
+<h1>Create</h1>
+
+<div class="row">
+    <div class="d-inline-flex justify-content-sm-between">
+        <h4 >Transaction</h4>
+        <a class="text-end" asp-action="Index">Back to List</a>
+    </div>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @if(Model.CurrentUser != null && Model.CurrentUser.Accounts.Count >= 2)
+            {
+                <label class="control-label">Transaction Type:</label>
+                <div id="InternalOrExternal">
+                    <input asp-for="Transaction.IsInternalTransfer" type="radio" class="btn-check" value="true" id="internal-radio">
+                    <label class="btn btn-outline-success" for="internal-radio">Transfer Between Accounts</label>
+
+                    <input asp-for="Transaction.IsInternalTransfer" type="radio" class="btn-check" value="false" id="external-radio">
+                    <label class="btn btn-outline-success" for="external-radio">External Transfer</label>
+                </div>
+
+                <div id="IsDepositRadio" class="mt-2 mt-3">
+                    <div>
+                        <input asp-for="IsDeposit" type="radio" class="btn-check" value="true" id="deposit-radio" autocomplete="off" checked>
+                        <label class="btn btn-outline-success" for="deposit-radio">Deposit</label>
+
+                        <input asp-for="IsDeposit" type="radio" class="btn-check" value="false" id="withdrawal-radio" autocomplete="off">
+                        <label class="btn btn-outline-danger" for="withdrawal-radio">Withdraw</label>
+                    </div>
+                </div>
+
+                <div id="AccountOutOfField"  class="mt-2 form-group">
+                    <label class="control-label">Withdraw From</label>
+                        <select asp-for="AccountOutOf" asp-items="ViewBag.AccountOutOf" class="form-control"> 
+                            <option value="">Select Account</option>
+                        </select>
+                    <span asp-validation-for="AccountOutOf" class="text-danger"></span>
+                </div>
+            }
+
+            <div id="ExternalAccountField" class="mt-2 form-group">
+                <label class="control-label">External Account</label>
+                <input asp-for="Transaction.ExternalAccountName" placeholder="Name" class="form-control" />
+                <span asp-validation-for="Transaction.ExternalAccountName" class="text-danger"></span>
+            </div>
+
+            <div id="AccountIntoField" class="mt-2 form-group">
+                <label class="control-label">Deposit Into</label>
+                    <select asp-for="AccountInto" asp-items="ViewBag.AccountInto" class="form-control">
+                        <option value="">Select Account</option>
+                    </select>
+                <span asp-validation-for="AccountInto" class="text-danger"></span>
+            </div>
+
+            <div class="mt-2 form-group">
+                <label asp-for="Transaction.Amount" class="control-label"></label>
+                <input asp-for="Transaction.Amount" class="form-control" />
+                <span asp-validation-for="Transaction.Amount" class="text-danger"></span>
+            </div> 
+
+            <div class="mt-2 form-group">
+                <label asp-for="Transaction.Description" class="control-label"></label>
+                <input asp-for="Transaction.Description" placeholder="Transfer Explanation" class="form-control" />
+                <span asp-validation-for="Transaction.Description" class="text-danger"></span>
+            </div>
+
+            <p class="mt-2 text-black-50">Repeating Transactions Not Yet implemented</p>
+
+            <div class="form-group visually-hidden text-black-50">
+                <label asp-for="Transaction.Repeating" class="control-label"></label>
+                <input asp-for="Transaction.Repeating" type="checkbox" id="repeating" />
+                <span asp-validation-for="Transaction.Repeating" class="text-danger"></span>
+            </div>
+
+            <div id="frequency" class="form-group">
+                <label asp-for="Transaction.Frequency" class="control-label"></label>
+                <select asp-for="Transaction.Frequency" asp-items="@Html.GetEnumSelectList<Freq>()" class="form-control"></select>
+                <span asp-validation-for="Transaction.Frequency" class="text-danger"></span>
+            </div>
+            
+            <input asp-for="CurrentUser" type="hidden" value="@Model.CurrentUser"/>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+
+        $(document).ready(function () {
+            $('#frequency').hide();
+            $('#repeating').change(function () {
+                if ($('#repeating').is(':checked')) {
+                    $('#frequency').show();
+                } else {
+                    $('#frequency').hide();
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $('#AccountIntoField').hide();
+            $('#InternalOrExternal').change(function () {
+                if ($('#internal-radio').is(':checked')) {
+                    $('#AccountOutOfField').show();
+                    $('#AccountIntoField').show();
+                    $('#ExternalAccountField').hide();
+                    $('#IsDepositRadio').hide();
+                } else {
+                    $('#IsDepositRadio').show();
+
+                    if ($('#withdrawal-radio').is(':checked')) {
+                        $('#AccountIntoField').hide();
+                        $('#AccountOutOfField').show();
+                        $('#ExternalAccountField').show();
+                    } else {
+                        $('#AccountIntoField').show();
+                        $('#AccountOutOfField').hide();
+                        $('#ExternalAccountField').show();
+                    }
+                }
+            });
+
+        });
+
+        $(document).ready(function () {
+            $('#withdrawal-radio').change(function () {
+                $('#AccountIntoField').hide();
+                $('#AccountOutOfField').show();
+                $('#ExternalAccountField').show();
+            });
+        });
+
+        $(document).ready(function () {
+            $('#deposit-radio').change(function () {
+                $('#AccountOutOfField').hide();
+                $('#AccountIntoField').show();
+                $('#ExternalAccountField').show();
+            });
+        });
+    </script>
+}

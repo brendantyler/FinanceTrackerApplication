@@ -1,0 +1,113 @@
+﻿@using FinanceTrackerApplication.Areas.Identity.Data
+@using FinanceTrackerApplication.Models
+@model FinanceTrackerApplicationUser
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if(Model != null)
+{
+    ViewData["Title"] = "Dashboard";
+    
+    if(ViewData["Message"] != null)
+    {
+        <div id="message" class="alert alert-success" role="alert">
+            @ViewData["Message"]
+        </div>
+    }
+    //Quick Stats: Total Accounts, Most Recent Transaction, ComparativeCharts
+    <section id="QuickStats" class="mb-3">
+        <h1>Quick Stats</h1>
+        <h1>$@ViewData["TotalBalance"] @Model.CurrencyCode</h1>
+    </section>
+
+    //View of Accounts
+    <section id="AccountSection">
+        <h3>Welcome back, @Model.UserName,</h3>
+        <h5>Here's a quick overview of your finances.</h5>
+        <a class="float-end btn btn-primary m-1" href="@Url.Action("Create","Accounts")">Add Account</a>
+
+        @if (Model.Accounts != null)
+        {
+            <section id="accountsSection">
+                <h3 class="p-1">Accounts Overview</h3>
+                @if (Model.Accounts.Any(a => a.AccountType == AccountType.Loan || a.AccountType == AccountType.Credit))
+                {
+                    <section class="d-flex justify-content-evenly pt-1, rounded-1">
+                        <div class="col-6 p-1">
+                            <h5 class="text-center text-light bg-success mb-1 rounded">Assets</h5>
+                            @foreach (var a in Model.Accounts.Where(a => a.AccountType != AccountType.Credit || a.AccountType != AccountType.Credit))
+                            {
+
+                                <a class="text-decoration-none" href="@Url.Action("Details", "Accounts", new { id = a.Id })">
+                                    <div class="card mb-2">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@a.Name</h5>
+                                            <p class="card-text">Balance: @a.Balance</p>
+                                        </div>
+                                    </div>
+                                </a>    
+                            }
+                        </div>
+                        <div class="col-6 p-1">
+                            <h5 class="text-center text-light bg-danger mb-1 rounded">Liabilities</h5>
+                            @foreach (var a in Model.Accounts.Where(a => a.AccountType == AccountType.Credit || a.AccountType == AccountType.Credit))
+                            {
+                                <a class="text-decoration-none" href="@Url.Action("Details", "Accounts", new { id = a.Id })">
+                                    <div class="card mb-2">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@a.Name</h5>
+                                            <p class="card-text">Balance: @a.Balance</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            }
+                        </div>
+                    </section>
+                }
+                else
+                {
+                    @foreach(var a in Model.Accounts)
+                    {
+                        <a href="@Url.Action("Details", "Accounts", new { id = a.Id })">
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <h5 class="card-title">@a.Name</h5>
+                                    <p class="card-text">Balance: @a.Balance</p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+                <a class="float-end" href="@Url.Action("Index","Accounts")">View All Accounts</a>
+            </section>
+
+            <a class="btn btn-primary col-12" href="@Url.Action("Create", "Transactions"@* , new {optionSelected = 1} *@ )">Quick Add</a>
+        }
+
+        else
+        {
+            <a class="float-end btn btn-primary m-1" href="@Url.Action("Create","Accounts")">Add Account</a>
+            <h1>No Accounts</h1>
+            @Html.ActionLink("Add Account", "Create", "Accounts")
+        }
+    </section>
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+}
+
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            setTimeout(function(){
+                $('#message').fadeOut(1000);
+            }, 5000);
+        });
+    </script>
+}

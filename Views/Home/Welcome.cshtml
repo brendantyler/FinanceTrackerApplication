@@ -1,0 +1,32 @@
+﻿@using FinanceTrackerApplication.Areas.Identity.Data
+@model FinanceTrackerApplicationUser
+
+@{
+    ViewData["Title"] = "Intro";
+}
+@if(ViewData["Message"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewData["Message"]
+    </div>
+}
+<h1>Welcome To The App</h1>
+
+<p>Finance Tracker is a simple web application that allows you to track your finances. You can add accounts, transactions, and categories to help you keep track of your spending and saving. You can also view reports to see where your money is going. This Application is a mock finance manager so that you can better keep track of your spending this application has no connection to your bank account or any fluctuations that may occur. We do not handle or process real money this is just a representation of the users inputs with minor automation we are not responsible for any misuse and or misrepresentation of finances </p>
+
+<p>Before you get started What is your preferred currency?</p>
+
+@* TODO: Make Searchable*@
+@* TODO: Route to next step: Create First Account*@
+
+
+<form asp-action="SetCurrency">
+    <div class="form-group">
+        <label asp-for="CurrencyCode" class="control-label"></label>
+        <select asp-for="CurrencyCode" asp-items="@Html.GetEnumSelectList<CurrencyCode>()"  class="form-control"> </select>
+        <span asp-validation-for="CurrencyCode" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Set Currency" class="btn btn-primary" />
+    </div>
+</form>
