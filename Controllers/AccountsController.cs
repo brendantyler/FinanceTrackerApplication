@@ -80,6 +80,27 @@ namespace FinanceTrackerApplication.Controllers
             if (ModelState.IsValid)
             {
                 account.User = await _userManager.GetUserAsync(User);
+                switch (account.AccountType)
+                {
+                    case AccountType.Checking:
+                        account.IsAsset = true;
+                        break;
+                    case AccountType.Savings:
+                        account.IsAsset = true;
+                        break;
+                    case AccountType.Cash:
+                        account.IsAsset = true;
+                        break;
+                    case AccountType.Investment:
+                        account.IsAsset = true;
+                        break;
+                    case AccountType.Credit:
+                        account.IsAsset = false;
+                        break;
+                    case AccountType.Loan:
+                        account.IsAsset = false;
+                        break;
+                }
 
                 _context.Add(account);
                 await _context.SaveChangesAsync();

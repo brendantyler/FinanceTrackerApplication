@@ -17,9 +17,12 @@
         </div>
     }
     //Quick Stats: Total Accounts, Most Recent Transaction, ComparativeCharts
-    <section id="QuickStats" class="mb-3">
+
+    <section id="QuickStats" class="mb-3 col-12">
         <h1>Quick Stats</h1>
-        <h1>$@ViewData["TotalBalance"] @Model.CurrencyCode</h1>
+        <div class="mb-4">
+            <h1>Total Balance: $@ViewData["TotalBalance"] @Model.CurrencyCode</h1>
+        </div>
     </section>
 
     //View of Accounts
@@ -32,7 +35,7 @@
         {
             <section id="accountsSection">
                 <h3 class="p-1">Accounts Overview</h3>
-                @if (Model.Accounts.Any(a => a.AccountType == AccountType.Loan || a.AccountType == AccountType.Credit))
+                @if (Model.Accounts.Any(a => a.IsAsset == true))
                 {
                     <section class="d-flex justify-content-evenly pt-1, rounded-1">
                         <div class="col-6 p-1">
@@ -52,7 +55,7 @@
                         </div>
                         <div class="col-6 p-1">
                             <h5 class="text-center text-light bg-danger mb-1 rounded">Liabilities</h5>
-                            @foreach (var a in Model.Accounts.Where(a => a.AccountType == AccountType.Credit || a.AccountType == AccountType.Credit))
+                            @foreach (var a in Model.Accounts.Where(a => a.IsAsset == false))
                             {
                                 <a class="text-decoration-none" href="@Url.Action("Details", "Accounts", new { id = a.Id })">
                                     <div class="card mb-2">
