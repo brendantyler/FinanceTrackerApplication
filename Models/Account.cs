@@ -9,6 +9,7 @@ namespace FinanceTrackerApplication.Models
         [Key]
         public Guid Id { get; set; }
         public string? Name { get; set; }
+        public bool IsAsset { get; set; }
         public AccountType AccountType { get; set; }
 
         [Required]
