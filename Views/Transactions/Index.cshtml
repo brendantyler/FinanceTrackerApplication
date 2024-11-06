@@ -30,6 +30,8 @@
 @foreach (var item in Model.Where(t => t.IsInternalTransfer == false))
 {
     <div class="card">
-
+        <h4>@item.Description</h4>
+        <p>@item.Amount</p>
+        <p>Date: @item.CreatedAt</p>
     </div>
 }
