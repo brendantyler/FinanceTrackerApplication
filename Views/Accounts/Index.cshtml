@@ -1,10 +1,7 @@
 ﻿@model IEnumerable<FinanceTrackerApplication.Models.Account>
 
 @{
-    ViewData["Title"] = "Index";
-    var Liabilities = Model.Where(a => a.AccountType.ToString() == "Loan" || a.AccountType.ToString() == "Credit");
-    var Assets = Model.Where(a => a.AccountType.ToString() != "Loan" && a.AccountType.ToString() != "Credit");
-
+    ViewData["Title"] = "Your Accounts";
 }
 
 <h1>Accounts List</h1>
