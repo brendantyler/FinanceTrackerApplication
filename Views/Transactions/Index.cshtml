@@ -1,83 +1,37 @@
 ﻿@model IEnumerable<FinanceTrackerApplication.Models.Transaction>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Transaction History";
+
+    Model.OrderBy( t => t.IsInternalTransfer).ToList();
 }
 
-<h1>Index</h1>
+<h1>All Transactions</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IsInternalTransfer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AccountOutOfId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExternalAccountName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AccountIntoId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Repeating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Frequency)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsInternalTransfer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AccountOutOfId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExternalAccountName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AccountIntoId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Repeating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Frequency)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+</p
+
+@* TODO: Pagination for each section*@
+
+<h1>Transfers Between Accounts (Internal Transfers)</h1>
+@foreach (var item in Model.Where(t => t.IsInternalTransfer == true))
+{
+    <div class="card">
+        <div class="card-body">
+            <h4>@item.Description</h4>
+            <p>@item.Amount</p>
+            <p>Date: @item.CreatedAt</p>
+        </div>
+    </div>
 }
-    </tbody>
-</table>
+
+<h1>Transfers in/out (External Transfers)</h1>
+@foreach (var item in Model.Where(t => t.IsInternalTransfer == false))
+{
+    <div class="card">
+        <h4>@item.Description</h4>
+        <p>@item.Amount</p>
+        <p>Date: @item.CreatedAt</p>
+    </div>
+}

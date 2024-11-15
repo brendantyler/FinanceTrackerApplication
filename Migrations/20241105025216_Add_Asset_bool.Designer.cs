@@ -4,6 +4,7 @@ using FinanceTrackerApplication.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinanceTrackerApplication.Migrations
 {
     [DbContext(typeof(FinanceTrackerApplicationContext))]
-    partial class FinanceTrackerApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20241105025216_Add_Asset_bool")]
+    partial class Add_Asset_bool
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
