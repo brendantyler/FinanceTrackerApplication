@@ -46,6 +46,8 @@
     --bs-dark: #3d3d3d;
     --bs-primary-rgb: 55, 141, 252;
     --bs-secondary-rgb: 217, 227, 241;
+    --bg-tertiary-rgb: 223, 156, 148;
+    --bg-quartinary-rgb: 191, 89, 94;
     --bs-success-rgb: 67, 204, 41;
     --bs-info-rgb: 91, 98, 244;
     --bs-warning-rgb: 255, 193, 7;
@@ -8856,6 +8858,15 @@ textarea.form-control-lg {
   background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;
 }
 
+.bg-tertiary {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-tertiary-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.bg-quartiary {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-quartiary-rgb), var(--bs-bg-opacity)) !important;
+}
 .bg-success {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
@@ -8913,7 +8924,12 @@ textarea.form-control-lg {
 
 .bg-body-tertiary {
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-tertiary-bg-rgb), var(--bs-bg-opacity)) !important;
+  background-color: rgba(var(--bs-tertiary-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.bg-body-quartinery{
+     --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-quartinery-rgb), var(--bs-bg-opacity)) !important;
 }
 
 .bg-opacity-10 {

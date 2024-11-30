@@ -1438,6 +1438,16 @@
   background-color: rgba(var(--bs-body-rgb), var(--bs-bg-opacity)) !important;
 }
 
+.bg-tertiary{
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-tertiary-rgb));
+}
+
+.bg-quartinary{
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-quartinary-rgb));
+}
+
 .bg-transparent {
   --bs-bg-opacity: 1;
   background-color: transparent !important;
