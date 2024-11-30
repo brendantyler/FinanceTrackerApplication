@@ -17,28 +17,31 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom box-shadow mb-3">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom box-shadow">
                 <div class="container-fluid justify-content-between mx-5">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FinanceTrackerApplication</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="navbar-collapse collapse justify-content-between">
                         <ul class="navbar-nav">
+                            <a class="navbar-brand fw-bold fs-2 font-monospace" asp-area="" asp-controller="Home" asp-action="Index">
+                                <img style="height: 50px" src="/Images/Home/KoinLogo.png" />
+                                Koin                            
+                            </a>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Currencies">Currencies</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Currencies">Currencies</a>
                             </li>
                             @if(SignInManager.UserManager.GetUserAsync(User).Result != null)
                             {                           
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Transactions" asp-action="Index">Transactions</a>
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Transactions" asp-action="Index">Transactions</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Settings">Settings</a>
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Settings">Settings</a>
                                 </li>
                             }
                         </ul>
@@ -51,9 +54,9 @@
         <main role="main">
             @RenderBody()
         </main>
-        <footer class="border-top footer text-muted">
-            <div class="container-fluid">
-                &copy; 2024 - FinanceTrackerApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <footer class="footer text-muted">
+            <div class="container-fluid text-white bg-primary">
+                &copy; 2024 - FinanceTrackerApplication - <a class="text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </div>
         </footer>
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
