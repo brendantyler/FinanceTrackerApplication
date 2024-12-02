@@ -224,7 +224,7 @@ kbd {
   padding: 0.2rem 0.4rem;
   font-size: 0.875em;
   color: #fff;
-  background-color: #343a40;
+  background-color: #3d3d3d;
   border-radius: 0.2rem;
 }
 kbd kbd {
@@ -250,7 +250,7 @@ table {
 caption {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  color: #C9A5EE;
+  color: #dea421;
   text-align: right;
 }
 

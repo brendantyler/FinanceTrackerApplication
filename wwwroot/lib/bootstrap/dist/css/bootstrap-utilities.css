@@ -11,14 +11,14 @@
 }
 
 .link-primary {
-  color: #0C6028;
+  color: #c5121a;
 }
 .link-primary:hover, .link-primary:focus {
   color: #0a58ca;
 }
 
 .link-secondary {
-  color: #C9A5EE;
+  color: #dea421;
 }
 .link-secondary:hover, .link-secondary:focus {
   color: #565e64;
@@ -46,7 +46,7 @@
 }
 
 .link-danger {
-  color: #dc3545;
+  color: #bf595e;
 }
 .link-danger:hover, .link-danger:focus {
   color: #b02a37;
@@ -60,7 +60,7 @@
 }
 
 .link-dark {
-  color: #343a40;
+  color: #3d3d3d;
 }
 .link-dark:hover, .link-dark:focus {
   color: #1a1e21;
@@ -424,7 +424,7 @@
 }
 
 .border {
-  border: 1px solid #dee2e6 !important;
+  border: 1px solid #cccccc !important;
 }
 
 .border-0 {
@@ -432,7 +432,7 @@
 }
 
 .border-top {
-  border-top: 1px solid #dee2e6 !important;
+  border-top: 1px solid #cccccc !important;
 }
 
 .border-top-0 {
@@ -440,7 +440,7 @@
 }
 
 .border-end {
-  border-right: 1px solid #dee2e6 !important;
+  border-right: 1px solid #cccccc !important;
 }
 
 .border-end-0 {
@@ -448,7 +448,7 @@
 }
 
 .border-bottom {
-  border-bottom: 1px solid #dee2e6 !important;
+  border-bottom: 1px solid #cccccc !important;
 }
 
 .border-bottom-0 {
@@ -456,7 +456,7 @@
 }
 
 .border-start {
-  border-left: 1px solid #dee2e6 !important;
+  border-left: 1px solid #cccccc !important;
 }
 
 .border-start-0 {
@@ -464,11 +464,11 @@
 }
 
 .border-primary {
-  border-color: #0C6028 !important;
+  border-color: #c5121a !important;
 }
 
 .border-secondary {
-  border-color: #C9A5EE !important;
+  border-color: #dea421 !important;
 }
 
 .border-success {
@@ -484,7 +484,7 @@
 }
 
 .border-danger {
-  border-color: #dc3545 !important;
+  border-color: #bf595e !important;
 }
 
 .border-light {
@@ -492,7 +492,7 @@
 }
 
 .border-dark {
-  border-color: #343a40 !important;
+  border-color: #3d3d3d !important;
 }
 
 .border-white {
@@ -1349,7 +1349,7 @@
 
 .text-muted {
   --bs-text-opacity: 1;
-  color: #C9A5EE !important;
+  color: #dea421 !important;
 }
 
 .text-black-50 {
@@ -1436,6 +1436,16 @@
 .bg-body {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-body-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.bg-tertiary{
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-tertiary-rgb));
+}
+
+.bg-quartinary{
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-quartinary-rgb));
 }
 
 .bg-transparent {
