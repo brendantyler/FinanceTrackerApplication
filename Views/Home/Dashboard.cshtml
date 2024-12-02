@@ -1,0 +1,180 @@
+﻿@using FinanceTrackerApplication.Areas.Identity.Data
+@using FinanceTrackerApplication.Models
+@model FinanceTrackerApplicationUser
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+    
+@if(ViewData["Message"] != null){
+    <div id="message" class="alert alert-success" role="alert">
+        @ViewData["Message"]
+    </div>
+}
+<section id="Dashboard" class="d-flex justify-content-evenly mt-1">
+    <div id="leftCol" class=" mh-100 flex-grow-1 m-2">
+        <div class="card mh-50 p-3">
+            <div class="text-center">
+                <h5>Accounts Overview</h5>
+                <p>Here's a quick overview of your finances.</p>
+            </div>
+            <div class="d-flex">
+                <img class="w-75 border" src="#" alt="Alternate Text" />
+                <div class="25">
+                    <div class="card">
+                        <h5>Account Name</h5>
+                        <p>Balance: $0.00</p>
+                    </div>
+                    <div class="card">
+                        <h5>Account Name</h5>
+                        <p>Balance: $0.00</p>
+                    </div>
+                    <div class="card">
+                        <h5>Account Name</h5>
+                        <p>Balance: $0.00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mh-50 p-3 mt-3">
+            <div class="d-flex">
+                <h5 class="w-75 text-center">Quick Stats</h5>
+                <h5 class="w-25 text-end">...</h5>
+            </div>
+            <div class="d-flex">
+                <div class="card w-50">
+                    <h5>Accounts</h5>
+                    <p>Total: 0</p>
+                </div>
+                <div class="card w-50">
+                    <h5>Most Recent Transaction</h5>
+                    <p>...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="centerCol" class="mh-100 flex-grow-1 m-2">
+        <div class="card mh-50 p-3">
+                <h5 class="text-center">Comparative Charts</h5>
+                <div class="d-flex px-3">
+                    <div>
+                        <h3>bar  ===================</h3>
+                        <h3>bar  ===================</h3>
+                    </div>
+                    <div>
+                        <h1>$24000</h1>
+                        <p>Remaining</p>
+                    </div>
+                </div>
+            </div>
+        <div class="card mh-50 p-3 mt-3">
+            <div class="d-flex">
+                <div class="text-center w-75 ms-5">
+                    <h5>Latest Transactions</h5>
+                    <p>Here is a list of the last 3 transactions</p>
+                </div>
+                <h5 class="w-25 text-end">...</h5>
+            </div>
+            <table class="text-center">
+                <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                </tr>
+                <tr>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
+                </tr>
+                <tr>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
+                </tr>
+                <tr>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="rightCol" class="mh-100 flex-grow-1 m-2">
+        <div class="card">Testing</div>
+    </div>
+</section>
+
+@*//Quick Stats: Total Accounts, Most Recent Transaction, ComparativeCharts*@
+@*//View of Accounts*@
+@*     <section id="AccountSection">
+        <h3>Welcome back, @Model.UserName,</h3>
+        <h5>Here's a quick overview of your finances.</h5>
+        <a class="float-end btn btn-primary m-1" href="@Url.Action("Create","Accounts")">Add Account</a>
+
+        @if (Model.Accounts != null)
+        {
+            <section id="accountsSection">
+                <h3 class="p-1">Accounts Overview</h3>
+                @if (Model.Accounts.Any(a => a.IsAsset == true))
+                {
+                    <section class="d-flex justify-content-evenly pt-1, rounded-1">
+                        <div class="col-6 p-1">
+                            <h5 class="text-center text-light bg-success mb-1 rounded">Assets</h5>
+                            @foreach (var a in Model.Accounts.Where(a => a.AccountType != AccountType.Credit || a.AccountType != AccountType.Credit))
+                            {
+
+                                <a class="text-decoration-none" href="@Url.Action("Details", "Accounts", new { id = a.Id })">
+                                    <div class="card mb-2">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@a.Name</h5>
+                                            <p class="card-text">Balance: @a.Balance</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            }
+                        </div>
+                        <div class="col-6 p-1">
+                            <h5 class="text-center text-light bg-danger mb-1 rounded">Liabilities</h5>
+                            @foreach (var a in Model.Accounts.Where(a => a.IsAsset == false))
+                            {
+                                <a class="text-decoration-none" href="@Url.Action("Details", "Accounts", new { id = a.Id })">
+                                    <div class="card mb-2">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@a.Name</h5>
+                                            <p class="card-text">Balance: @a.Balance</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            }
+                        </div>
+                    </section>
+                }
+                else
+                {
+                    @foreach (var a in Model.Accounts)
+                    {
+                        <a href="@Url.Action("Details", "Accounts", new { id = a.Id })">
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <h5 class="card-title">@a.Name</h5>
+                                    <p class="card-text">Balance: @a.Balance</p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+                <a class="float-end" href="@Url.Action("Index","Accounts")">View All Accounts</a>
+            </section>
+
+            <a class="btn btn-primary col-12" href="@Url.Action("Create", "Transactions", new {optionSelected = 1} )">Quick Add</a>
+        }
+
+        else
+        {
+            <a class="float-end btn btn-primary m-1" href="@Url.Action("Create","Accounts")">Add Account</a>
+            <h1>No Accounts</h1>
+            @Html.ActionLink("Add Account", "Create", "Accounts")
+        }
+    </section>
+ *@

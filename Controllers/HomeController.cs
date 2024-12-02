@@ -53,12 +53,7 @@ namespace FinanceTrackerApplication.Controllers
                     return RedirectToAction("Welcome", "Home", user);
                 }
 
-                ViewData["Message"] = message;
-                ViewData["TotalBalance"] = _userService.GetTotalBalance(user);
-
-                List<Account> Accounts = _applicationDbContext.Account.Where(x => x.User == user).ToList();
-                user.Accounts = Accounts;
-                return View(user);
+                return RedirectToAction("Dashboard", "Home", user);
             }
         }
 
@@ -66,6 +61,18 @@ namespace FinanceTrackerApplication.Controllers
         [Authorize]
         public IActionResult Welcome(FinanceTrackerApplicationUser user, string? message )
         {
+            return View(user);
+        }
+
+        [Authorize]
+        public IActionResult Dashboard(FinanceTrackerApplicationUser user, string? message)
+        {
+            ViewData["Message"] = message;
+            ViewData["TotalBalance"] = _userService.GetTotalBalance(user);
+
+            List<Account> Accounts = _applicationDbContext.Account.Where(x => x.User == user).ToList();
+            user.Accounts = Accounts;
+
             return View(user);
         }
 
