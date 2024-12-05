@@ -6,32 +6,41 @@
     Model.OrderBy( t => t.IsInternalTransfer).ToList();
 }
 
-<h1>All Transactions</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p
-
+<div class="d-flex mb-3 mt-5">
+    <h1 class="ms-5">All Transactions</h1>
+    <p class="ms-5 align-self-end"><a asp-action="Create">Create New</a></p>
+</div>
 @* TODO: Pagination for each section*@
-
-<h1>Transfers Between Accounts (Internal Transfers)</h1>
-@foreach (var item in Model.Where(t => t.IsInternalTransfer == true))
-{
-    <div class="card">
-        <div class="card-body">
-            <h4>@item.Description</h4>
-            <p>@item.Amount</p>
-            <p>Date: @item.CreatedAt</p>
+<div class="d-flex mx-5 border">
+    <div id="internaltransfers" class="w-50 overflow-hidden">
+        <h3>Transfers Between Accounts (Internal Transfers)</h3>
+        <div style="" class="border h-50 overflow-hidden">
+            @foreach (var item in Model.Where(t => t.IsInternalTransfer == true))
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <h4>@item.Description</h4>
+                        <p>@item.Amount</p>
+                        <p>Date: @item.CreatedAt</p>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-}
 
-<h1>Transfers in/out (External Transfers)</h1>
-@foreach (var item in Model.Where(t => t.IsInternalTransfer == false))
-{
-    <div class="card">
-        <h4>@item.Description</h4>
-        <p>@item.Amount</p>
-        <p>Date: @item.CreatedAt</p>
+    <div id="internaltransfers" class="w-50">
+        <h3>Transfers in/out (External Transfers)</h3>
+        <div style="" class="border h-50 overflow-scroll">
+        @foreach (var item in Model.Where(t => t.IsInternalTransfer == false))
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h4>@item.Description</h4>
+                    <p>@item.Amount</p>
+                    <p>Date: @item.CreatedAt</p>
+                </div>
+            </div>
+        }
+        </div>
     </div>
-}
+</div>
