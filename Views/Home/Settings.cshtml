@@ -9,142 +9,143 @@
             @ViewData["Message"]
         </div>
     }
-<h1>Settings</h1>
-
-<section class="UserSettingMenu mt-4 m-2">
-    <div>
-        <h4>User Settings</h4>
-        <hr />
-        <ul class="list-unstyled d-inline row col-md-9">
-            <li class="d-inline">
-                <div type="button" class="btn btn-outline-dark col-md-3" data-bs-toggle="modal" data-bs-target="#usernameModal" data-bs-whatever="Change Username">
-                    Change Username
-                </div>
-            </li>
-            <li class="d-inline">
-                <div type="button" class="btn btn-outline-dark col-md-3" data-bs-toggle="modal" data-bs-target="#passwordModal" data-bs-whatever="Change Password">
-                    Change Password
-                </div>
-            </li>
-            <li class="d-inline">
-                <div type="button" class="btn btn-outline-dark col-md-3" data-bs-toggle="modal" data-bs-target="#emailModal" data-bs-whatever="Change Email">
-                    Change Email
-                </div>
-            </li>
-        </ul>   
-    </div>
-
-    <div class="mt-5">
-        <h5>Account Settings</h5>
-        <hr />
-        <ul class="list-unstyled d-inline row col-md-9">
-            <li class="d-inline">
-                <a class="text-decoration-none text-black" asp-controller="Accounts" asp-action="Index">
-                    <div class="btn btn-outline-primary col-md-3">
-                        Accounts List
+<div class="container">
+    <h1>Settings</h1>
+    <section class="UserSettingMenu mt-4 m-2">
+        <div>
+            <h4>User Settings</h4>
+            <hr />
+            <ul class="list-unstyled d-inline row col-md-9">
+                <li class="d-inline">
+                    <div type="button" class="btn btn-outline-dark col-md-3" data-bs-toggle="modal" data-bs-target="#usernameModal" data-bs-whatever="Change Username">
+                        Change Username
                     </div>
-                </a>
-            </li>
-            <li class="d-inline">
-                <a class="text-decoration-none text-black disabled" asp-controller="Home" asp-action="DownloadData">
-                    <div class="btn btn-outline-dark col-md-3">
-                        Download Data
+                </li>
+                <li class="d-inline">
+                    <div type="button" class="btn btn-outline-dark col-md-3" data-bs-toggle="modal" data-bs-target="#passwordModal" data-bs-whatever="Change Password">
+                        Change Password
                     </div>
-                </a>
-            </li>
-            <li class="d-inline">
-                <a class="text-decoration-none text-black disabled" asp-action="DeleteAccount">
-                    <div class="btn btn-outline-danger col-md-3">
-                        Delete Account
+                </li>
+                <li class="d-inline">
+                    <div type="button" class="btn btn-outline-dark col-md-3" data-bs-toggle="modal" data-bs-target="#emailModal" data-bs-whatever="Change Email">
+                        Change Email
                     </div>
-                </a>
-            </li>
-        </ul>
-    </div>
-
-    @* Settings Modal *@
-    <div class="modal fade" id="usernameModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Change Username</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form asp-controller="Home" asp-action="ChangeInformation" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="modal-body">
-                        <label for="recipient-name" class="col-form-label">Enter New Username</label>
-                        <input asp-for="@Model.Username" type="text" class="form-control" id="recipient-name">
-                        <span asp-validation-for="Username" class="text-danger"></span>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <div class="form-group">
-                            <input type="submit" value="Change" class="btn btn-primary" />
-                        </div>
-                    </div>
-                </form>
-            </div>
+                </li>
+            </ul>   
         </div>
-    </div>
 
-    @* emailModal *@
-    <div class="modal fade" id="emailModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Update Email</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form asp-controller="Home" asp-action="ChangeInformation" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="modal-body">
-                        <label asp-for="@Model.Email" class="col-form-label">Enter Updated Email</label>
-                        <input asp-for="@Model.Email" type="text" class="form-control">
-                        <span asp-validation-for="Username" class="text-danger"></span>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <div class="form-group">
-                            <input type="submit" value="Update" class="btn btn-primary" />
+        <div class="mt-5">
+            <h5>Account Settings</h5>
+            <hr />
+            <ul class="list-unstyled d-inline row col-md-9">
+                <li class="d-inline">
+                    <a class="text-decoration-none text-black" asp-controller="Accounts" asp-action="Index">
+                        <div class="btn btn-outline-primary col-md-3">
+                            Accounts List
                         </div>
-                    </div>
-                </form>
-            </div>
+                    </a>
+                </li>
+                <li class="d-inline">
+                    <a class="text-decoration-none text-black disabled" asp-controller="Home" asp-action="DownloadData">
+                        <div class="btn btn-outline-dark col-md-3">
+                            Download Data
+                        </div>
+                    </a>
+                </li>
+                <li class="d-inline">
+                    <a class="text-decoration-none text-black disabled" asp-action="DeleteAccount">
+                        <div class="btn btn-outline-danger col-md-3">
+                            Delete Account
+                        </div>
+                    </a>
+                </li>
+            </ul>
         </div>
-    </div>
 
-    @* passwordModal *@
-    <div class="modal fade" id="passwordModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Change Password</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form asp-controller="Home" asp-action="ChangeInformation" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="modal-body">
-                        <div>
-                            <label asp-for="@Model.OldPassword" class="col-form-label">Enter Current Password</label>
-                            <input asp-for="@Model.OldPassword" placeholder="Old Password" type="text" class="form-control">
+        @* Settings Modal *@
+        <div class="modal fade" id="usernameModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Change Username</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form asp-controller="Home" asp-action="ChangeInformation" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="modal-body">
+                            <label for="recipient-name" class="col-form-label">Enter New Username</label>
+                            <input asp-for="@Model.Username" type="text" class="form-control" id="recipient-name">
                             <span asp-validation-for="Username" class="text-danger"></span>
                         </div>
-                        <div>
-                            <label asp-for="@Model.NewPassword" class="col-form-label">Enter New Password</label>
-                            <input asp-for="@Model.NewPassword" placeholder="New Password" type="text" class="form-control">
-                            <span asp-validation-for="Username" class="text-danger"></span>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <div class="form-group">
+                                <input type="submit" value="Change" class="btn btn-primary" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <div class="form-group">
-                            <input type="submit" value="Change" class="btn btn-primary" />
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+
+        @* emailModal *@
+        <div class="modal fade" id="emailModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Update Email</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form asp-controller="Home" asp-action="ChangeInformation" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="modal-body">
+                            <label asp-for="@Model.Email" class="col-form-label">Enter Updated Email</label>
+                            <input asp-for="@Model.Email" type="text" class="form-control">
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <div class="form-group">
+                                <input type="submit" value="Update" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        @* passwordModal *@
+        <div class="modal fade" id="passwordModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Change Password</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form asp-controller="Home" asp-action="ChangeInformation" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="modal-body">
+                            <div>
+                                <label asp-for="@Model.OldPassword" class="col-form-label">Enter Current Password</label>
+                                <input asp-for="@Model.OldPassword" placeholder="Old Password" type="text" class="form-control">
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+                            <div>
+                                <label asp-for="@Model.NewPassword" class="col-form-label">Enter New Password</label>
+                                <input asp-for="@Model.NewPassword" placeholder="New Password" type="text" class="form-control">
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <div class="form-group">
+                                <input type="submit" value="Change" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 

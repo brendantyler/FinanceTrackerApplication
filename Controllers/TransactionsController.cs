@@ -152,16 +152,14 @@ namespace FinanceTrackerApplication.Controllers
                     else
                     {
                         transaction.AccountOutOfId = transactionVM.AccountOutOf;
-                        transaction.Description = $"Withdrawal of {transactionVM.Transaction.Amount} from {AccountInto}";
-
-                        return RedirectToAction("Index", "Home", new { message = transfered.Message });
+                        transaction.Description = $"Withdrawal of {transactionVM.Transaction.Amount} from {AccountOut.Name} to {transaction.ExternalAccountName}";
                     }
                 }
 
                 _context.Add(transaction);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home", new { message = transfered.Message });
             }
             return View();
         }

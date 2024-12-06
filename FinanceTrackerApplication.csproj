@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Accounts\Settings.cshtml" />
     <Content Remove="wwwroot\css\Main.scss" />
   </ItemGroup>
 
@@ -25,16 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Views\Accounts\Settings.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\Accounts\Settings.cshtml" />
     <_ContentIncludedByDefault Remove="wwwroot\css\Main.scss" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Accounts\Settings.cshtml" />
     <None Include="wwwroot\lib\scss\custom.scss" />
   </ItemGroup>
 

@@ -67,11 +67,11 @@ namespace FinanceTrackerApplication.Controllers
         [Authorize]
         public IActionResult Dashboard(FinanceTrackerApplicationUser user, string? message)
         {
-            ViewData["Message"] = message;
-            ViewData["TotalBalance"] = _userService.GetTotalBalance(user);
-
             List<Account> Accounts = _applicationDbContext.Account.Where(x => x.User == user).ToList();
             user.Accounts = Accounts;
+
+            ViewData["Message"] = message;
+            ViewData["LastFiveTransactions"] = _userService.GetRecentTransactions(user);
 
             return View(user);
         }

@@ -5,62 +5,72 @@
 
 }
 
-@* <h1 class="card-title">@Model.Name Account Details</h1>
- *@
-<div class="card my-4">
-    <div class="card-body">
-        <div class="d-flex justify-content-between">
-            <h1 class="fst-italic card-title">@Model.Name</h1>
-            <p class="card-text text-end fs-3 m-0">Type: @Model.AccountType</p>
-        </div>
-        <p class="card-text fs-2">Balance: $@Model.Balance @Model.User.CurrencyCode</p>
-    </div>
-</div>
-
-@if(Model.Transactions.Count == 0)
-{
-    <div class="alert alert-warning" role="alert">
-        No transactions found.
-    </div>
-}
-else
-{
-<section>
-    <div class="d-flex">
-        <h4>Transactions (@Model.Transactions.Count)</h4>
-        <h5 class="mt-auto mx-2"></h5>
-    </div>
-    <article>
-        @foreach (var item in Model.Transactions)
-        {
-            if (item.AccountOutOfId == Model.Id)
-            {
-                item.Amount = -item.Amount;
-            }
-
-            String? title = item.IsInternalTransfer ? "Internal Transfer" : item.ExternalAccountName;
-            title += item.Amount < 0 ? " (Expense)" : " (Income)";
-
-            <div class="card mb-1">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <h5 class="card-title">@title</h5>
-                        <p class="card-text text-end m-0">Date: @item.CreatedAt.ToString("f")</p>
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <p class="card-text fs-5">@item.Description</p>
-                        <p class="card-text fs-5">Amount: @item.Amount @Model.User.CurrencyCode</p>
-                    </div>
+<div class="container pb-3">
+    @* <h1 class="card-title">@Model.Name Account Details</h1>
+     *@
+    <div class="card my-4">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h3 class="fst-italic card-title">@Model.Name</h3>
+                <p class="card-text fs-4 m-0">Type: @Model.AccountType</p>
+            </div>
+            <div class="d-flex justify-content-between">
+                @if(Model.Balance <0)
+                {
+                    <h4 class="card-text">Balance: <span class="text-danger">-$@Math.Abs(Model.Balance) @Model.User.CurrencyCode</span></h4>
+                }
+                else
+                {
+                    <h4 class="card-text">Balance: <span class="text-success">$@Model.Balance @Model.User.CurrencyCode</span></h4>
+                }
+                <div class="align-self-center">
+                    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@Model?.Id">Delete</a> |
+                    <a asp-action="Index">Back to List</a>
                 </div>
             </div>
-        }
-    </article>
-</section>
-}
+        </div>
+    </div>
 
-<div class="text-end">
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Delete" asp-route-id="@Model?.Id">Delete</a> |
-    <a asp-action="Index">Back to List</a>
+    @if(Model.Transactions.Count == 0)
+    {
+        <div class="alert alert-warning" role="alert">
+            No transactions found.
+        </div>
+    }
+    else
+    {
+    <section>
+        <div class="d-flex">
+            <h4>Transactions (@Model.Transactions.Count)</h4>
+            <h5 class="mt-auto mx-2"></h5>
+        </div>
+        <article>
+            @foreach (var item in Model.Transactions)
+            {
+                if (item.AccountOutOfId == Model.Id)
+                {
+                    item.Amount = -item.Amount;
+                }
+
+                String? title = item.IsInternalTransfer ? "Internal Transfer" : item.ExternalAccountName;
+                title += item.Amount < 0 ? " (Expense)" : " (Income)";
+
+                <div class="card mb-1">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="card-title">@title</h5>
+                            <p class="card-text text-end m-0">Date: @item.CreatedAt.ToString("f")</p>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <p class="card-text fs-5">@item.Description</p>
+                            <p class="card-text fs-5">Amount: @item.Amount @Model.User.CurrencyCode</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </article>
+    </section>
+    }
 </div>

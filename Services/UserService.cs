@@ -87,5 +87,19 @@ namespace FinanceTrackerApplication.Services
                 return 0.00M;
             }
         }
+
+        public List<Transaction> GetRecentTransactions(FinanceTrackerApplicationUser user)
+        {
+            List<Transaction> transactions = new List<Transaction>();
+            foreach (Account a in user.Accounts)
+            { 
+                //Take First Five of each account
+                transactions.AddRange(_context.Transaction.Where(x => x.AccountIntoId == a.Id || x.AccountOutOfId == a.Id).Take(5).OrderByDescending(x => x.CreatedAt).ToList());
+            }
+
+            transactions = transactions.OrderByDescending(x => x.CreatedAt).Take(5).ToList();
+
+            return transactions;
+        }
     }
 }

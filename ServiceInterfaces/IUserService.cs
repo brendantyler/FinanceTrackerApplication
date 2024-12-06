@@ -1,4 +1,5 @@
 ﻿using FinanceTrackerApplication.Areas.Identity.Data;
+using FinanceTrackerApplication.Models;
 
 namespace FinanceTrackerApplication.ServiceInterfaces
 {
@@ -11,5 +12,6 @@ namespace FinanceTrackerApplication.ServiceInterfaces
         Task UpdateUser(FinanceTrackerApplicationUser user);
         Task DeleteUser(FinanceTrackerApplicationUser user);
         decimal GetTotalBalance(FinanceTrackerApplicationUser user);
+        List<Transaction> GetRecentTransactions(FinanceTrackerApplicationUser user);
     }
 }

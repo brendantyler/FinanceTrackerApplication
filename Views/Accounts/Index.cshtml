@@ -4,25 +4,30 @@
     ViewData["Title"] = "Your Accounts";
 }
 
-<h1>Accounts List</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="container py-3">
+    <h1>Accounts List</h1>
+    <p class="text-black"><a asp-action="Create">Create New</a></p>
     @foreach (var item in Model.Where(a => a.IsAsset == true))
     {
-        <div class="card text-success">
+        <div class="card text-success mb-3">
             <div class="card-body d-flex justify-content-between">
                 <div>
-                    <h3 class="card-text">@item.AccountType Account</h3>
-                    <h4 class="card-title">Name: @item.Name</h4>
+                    <h5 class="card-text">@item.AccountType Account</h5>
+                    <p class="card-title">Name: @item.Name</p>
                 </div>
                 <div class="text-end">
-                    <h3 class="float-end">Balance: $@item.Balance</h3>
-                    <div>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @if(item.Balance < 0)
+                    {
+                        <h4 class="float-end text-danger">Balance: -$@Math.Abs(item.Balance)</h4>
+                    }
+                    else
+                    {
+                        <h4 class="float-end">Balance: $@item.Balance</h4>
+                    }
+                    <div class="text-black">
+                        <a class="link-dark" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a class="link-dark" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a class="link-dark" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                     </div>
                 </div>
             </div>
@@ -31,20 +36,21 @@
    
     @foreach (var item in Model.Where(a => a.IsAsset == false))
     {
-        <div class="card text-danger">
+        <div class="card text-danger mb-3">
             <div class="card-body d-flex justify-content-between">
                 <div>
-                    <h3 class="card-text">@item.AccountType Account</h3>
-                    <h4 class="card-title">Name: @item.Name</h4>
+                    <h5 class="card-text">@item.AccountType Account</h5>
+                    <p class="card-title">Name: @item.Name</p>
                 </div>
                 <div class="text-end">
-                    <h3 class="float-end">Balance: $@item.Balance</h3>
-                    <div>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <h4 class="float-end">Balance: $@item.Balance</h4>
+                    <div class="text-black">
+                        <a class="link-dark" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a class="link-dark" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a class="link-dark" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                     </div>
                 </div>
             </div>
         </div> 
     }
+</div>
