@@ -5,14 +5,14 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-    <div class="bg-light parkinsans">
-        <section id="HeroBanner" style="padding-bottom: 5rem; padding-top: 5rem;" class="bg-light mx-5">
-            <div class="col-12 d-flex justify-content-center align-content-center pb-2">
+    <div class="parkinsans m-0">
+        <section id="HeroBanner" class="p-5" style="background-image:url(Images/Home/KoinBgBlur.jpg); height:100%; width:100%; background-size:cover; background-position:100%; background-repeat:no-repeat; background-position-x:30%; filter:blur();">
+            <div class="col-12 d-flex align-content-center p-5 container">
                 <div class="col-4 my-3">
                     <h1 class="display-1 fw-bold text-primary mb-2"> Koin </h1>
-                    <h2 class="mb-5 fst-italic"> Smart Tracking for Smarter Spending </h2>
+                    <h2 class="mb-5 fst-italic"> Smart Tracking for Smarter Spending</h2>
                     <ul class="fs-3 mb-5 mt-5">
-                        <li class="text-secondary fst-italic">Manage Accounts</li>
+                        <li class="text-primary fst-italic">Manage Accounts</li>
                         <li style="color:#bf595e;" class="text-tertiary fst-italic">Track Transactions</li>
                         <li class="text-quartinary fst-italic">View Spending Habits</li>
                     </ul>
@@ -20,13 +20,10 @@
                         Get Started
                     </div>
                 </div>
-                <div class="col-6 mx-3 border rounded-2 mt-4 w-50">
-                    Image Mock Here
-                </div>
             </div>
         </section>
 
-        <section id="KeyFeatures" class="container-fluid my-5 pb-5 bg-body">
+        <section id="KeyFeatures" class="container-fluid mb-5 pb-5 bg-body">
             <h1 class="text-center display-2 pt-5 text-black fw-normal">Build Your Wealth</h1>
             <div class="container-fluid d-flex flex-wrap justify-content-around mt-5">
                 <div style="border-radius: 1rem;" class="bg-secondary flex-grow-1 w-50 ms-5 me-4 mb-4 px-4 d-flex">
@@ -39,8 +36,8 @@
                             </button>
                         </div>
                     </div>
-                    <div class="border radius rounded-2 w-50 me-3 my-5">
-                        Image Here
+                    <div class="radius rounded-2 w-50 me-3 my-5">
+                        <img class="img-fluid" style="border-radius:3px;" src="~/Images/Home/AccountList.png"/>
                     </div>
                 </div>
                 <div style="border-radius: 1rem;" class="bg-tertiary flex-grow-0 w-25 me-5 mb-4 px-3">
@@ -60,8 +57,8 @@
                         <h2 class="text-white mb-4">Transfer History</h2>
                         <h1 class="fs-2 w-75 lh-sm fw-normal text-light">Keep records and view detailed reports of your transfers to stay organized with your transactions</h1>
                     </div>
-                    <div class="border radius rounded-2 w-50 me-3 my-5 bg-black">
-                        Image Here
+                    <div class="radius rounded-2 w-50 me-3 my-5 bg-black">
+                        <img class="mw-100" src="~/Images/Home/AllTransactions.png"/>
                     </div>
                 </div>
             </div>
@@ -103,16 +100,6 @@
         </section>
 
         <section id="HeroLanding" class="mt-5 bg-primary position-relative">
-            @*Style 1*@  
-            @*             <svg viewBox="0 20 100 50" xmlns="http://www.w3.org/2000/svg">
-                <path fill="transparent" id="helix" d="M0,30 T20,25,50,50,100,60 M100,80Z" />
-                <text x="0">
-                    <textPath style="font-size:0.3rem" xlink:href="#helix">
-                        Dangerous Curves Ahead Testing testing 123 456 789 Watermelon
-                    </textPath>
-                </text>
-            </svg> *@
-
             @*SVG style2*@
             <div class="position-absolute flex-column d-flex justify-content-center w-100 h-100 mt-5">
                 <h3 class="text-center text-black mb-3 text-white">You made it this far so lets get started</h3>

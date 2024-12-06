@@ -11,8 +11,8 @@
     <p class="ms-5 align-self-end"><a asp-action="Create">Create New</a></p>
 </div>
 @* TODO: Pagination for each section*@
-<div class="d-flex mx-5 border">
-    <div id="internaltransfers" class="w-50 overflow-hidden">
+<div class="d-flex mx-5">
+    <div id="internaltransfers" class="w-50 overflow-hidden me-5">
         <h3>Transfers Between Accounts (Internal Transfers)</h3>
         <div style="" class="border h-50 overflow-hidden">
             @foreach (var item in Model.Where(t => t.IsInternalTransfer == true))
